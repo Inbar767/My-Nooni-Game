@@ -12,10 +12,10 @@ FoodMenu::FoodMenu(gameDataRef data, int elementsNumber) : Menu(data)
 //Pushes all elements sprites into sprites vector
 void FoodMenu::pushSpriteElements(int elementsNumber)
 {
-	for (int i = 0; i < elementsNumber && i < MAX_FOOD_ELEMENTS; i++)
+	for (int elementIndex = 0; elementIndex < elementsNumber && elementIndex < MAX_FOOD_ELEMENTS; elementIndex++)
 	{
-		data->assets.loadTexture("Food Menu Buttons " + std::to_string(i), FOOD_MENU + std::to_string(i) + ".png");
-		sprites.push_back(sf::Sprite(data->assets.getTexture("Food Menu Buttons " + std::to_string(i))));
+		data->assets.loadTexture("Food Menu Buttons " + std::to_string(elementIndex), FOOD_MENU + std::to_string(elementIndex) + ".png");
+		sprites.push_back(sf::Sprite(data->assets.getTexture("Food Menu Buttons " + std::to_string(elementIndex))));
 	}
 }
 
@@ -25,7 +25,7 @@ int FoodMenu::handleInput()
 	int MenuChoice = Menu::handleInput();
 	if (MenuChoice != EXIT_MENU && MenuChoice != NO_ELEMENT_CHOSEN)
 	{
-		MenuChoice += static_cast<int>(FoodType::MILK); //If element was chosen - set index to match FoodType
+		MenuChoice += static_cast<int>(FoodMenu::FoodType::MILK); //If element was chosen - set index to match FoodType
 	}
 	return MenuChoice;
 }
@@ -33,8 +33,8 @@ int FoodMenu::handleInput()
 //Gets the xp of chosen food from menu
 int FoodMenu::getFoodXp(int index)
 {
-	int foodStartIndex = static_cast<int>(FoodType::MILK);
-	int foodLastIndex = static_cast<int>(FoodType::CHOCOLATE);
+	int foodStartIndex = static_cast<int>(FoodMenu::FoodType::MILK);
+	int foodLastIndex = static_cast<int>(FoodMenu::FoodType::CHOCOLATE);
 	if (index >= foodStartIndex && index <= foodLastIndex)
 	{
 		return FOOD_XP[index - foodStartIndex];
