@@ -4,19 +4,20 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-enum AccessoryType {
-	NO_ACCESSORY = -1,
-	REFRIGERATOR,
-	BED,
-	BATH,
-	TABLE,
-	TOY_BOX
-};
-
 //A class for room's accessorizes
 class Accessorizes
 {
 public:
+
+	enum AccessoryType {
+		NO_ACCESSORY = -1,
+		REFRIGERATOR,
+		BED,
+		BATH,
+		TABLE,
+		TOY_BOX
+	};
+
 	//Constructor
 	Accessorizes(gameDataRef data);
 	//Destructor
