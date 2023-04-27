@@ -1,10 +1,10 @@
-﻿#include "Level1.h"
+#include "Level1.h"
 #include "Level2.h"
 #include "SmallPam.h"
 #include "BigPam.h"
 
 //Constructor gets a data, sounds and the type of the pet
-Level1::Level1(gameDataRef data, SoundManage* sounds, NooniName type) : 
+Level1::Level1(gameDataRef data, SoundManage* sounds, Pet::NooniName type) : 
 	LevelState(data, sounds, new EffectsControl(data), new Pet(data,type))
 {
 	endLevel = 10;
@@ -51,9 +51,9 @@ void Level1::draw(float dt)
 void Level1::levelUp()
 {
 	currentAction = ActioType::GROW;
-	sounds->playActionSound(SoundActionType::GROW_SOUND);
+	sounds->playActionSound(SoundManage::SoundActionType::GROW_SOUND);
 	pet->grow();
-	effects->startEffect(EffectType::GROW_EGG_EFFECT);
+	effects->startEffect(EffectsControl::EffectType::GROW_EGG_EFFECT);
 }
 
 //Stops current action
