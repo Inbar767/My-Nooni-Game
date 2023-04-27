@@ -8,23 +8,24 @@
 #include "Animation.h"
 #include "Definitions.h"
 
-enum NooniName {
-	ANGEL,
-	COCO,
-	FIFI,
-	BOO
-};
-
 //A class for pet
 class Pet
 {
 public:
+
+	enum NooniName {
+		ANGEL,
+		COCO,
+		FIFI,
+		BOO
+	};
+
 	//Constructor
-	Pet(gameDataRef data, NooniName petType);
+	Pet(gameDataRef data, Pet::NooniName petType);
 	//Destructor
 	~Pet();
 	//Gets pet's type
-	NooniName getType();
+	Pet::NooniName getType();
 	//Gets current action type
 	int getActionType();
 	//Gets the main position of the pet
@@ -76,4 +77,3 @@ private:
 	int needsNumber;
 	MoodType currentMood;
 };
-
