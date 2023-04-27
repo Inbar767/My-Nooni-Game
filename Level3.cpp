@@ -38,9 +38,8 @@ Level3::~Level3()
 	delete pet;
 	delete pam;
 	delete effects;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < menus.size(); i++)
 	{
 		delete menus[i];
 	}
-	delete[] menus;
 }
