@@ -37,12 +37,13 @@ Accessorizes::AccessoryType Accessorizes::handleInput(sf::Event event)
 	{
 		if (data->input.isSpriteClicked(accessorizes.at(accessoryIndex), sf::Mouse::Left, data->window))
 		{
-			if (accessoryIndex <= static_cast<int>(Accessorizes::AccessoryType::BED)) //If accessory's image is changing to being used
+			Accessorizes::AccessoryType accessorySelected = static_cast<Accessorizes::AccessoryType>(accessoryIndex);
+			if (accessorySelected <= Accessorizes::AccessoryType::BED) //If accessory's image is changing to being used
 			{
-				typeUsed = static_cast<Accessorizes::AccessoryType>(accessoryIndex);
+				typeUsed = accessorySelected;
 				accessorizes.at(accessoryIndex).setTexture(data->assets.getTexture("Accessorize Used " + std::to_string(accessoryIndex)));
 			}
-			return typeUsed;
+			return accessorySelected;
 		}
 	}
 	return Accessorizes::AccessoryType::NO_ACCESSORY;
