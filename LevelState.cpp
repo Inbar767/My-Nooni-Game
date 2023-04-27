@@ -67,9 +67,9 @@ void LevelState::draw(float dt)
 void LevelState::touchPet()
 {
 	pet->beingPetted();
-	sounds->playActionSound(SoundActionType::PET_SOUND);
+	sounds->playActionSound(SoundManage::SoundActionType::PET_SOUND);
 	currentAction = ActioType::PETTED;
-	effects->startEffect(EffectType::PET_EFFECT);
+	effects->startEffect(EffectsControl::EffectType::PET_EFFECT);
 	startPetTime = clock.getElapsedTime().asSeconds();		
 }
 
