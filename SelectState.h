@@ -6,6 +6,7 @@
 #include "BigPam.h"
 #include "SoundManage.h"
 #include <vector>
+#include <array>
 #include "Definitions.h"
 
 //A child class of State - for user to select an egg
@@ -47,6 +48,12 @@ private:
 
 	const int DIST_EGG_WIDTH = 190;
 	const int DIST_EGG_HEIGHT = 140;
+	const int X_FIRST_POSITION = 300;
+	const int Y_FIRST_POSITION = 220;
+	const int NUMBER_EGG_ROW = 2;
+
+	const std::array < std::string_view, NUMBER_EGG > EGGS_NAMES = { "Angel", "Coco", "Fifi", "Boo" };
+
 	const std::vector<std::string_view > SELECT_PAM = {
 	"Hello!\n\nMy name is Pam and I \nLive right next door.\nI'm going on a \nVacation and I can \nTake only 3 of my \nPets with me...",
 	"\nI need your help\nWith taking care\nFor one of them\nCan you do that?..." ,
@@ -55,4 +62,3 @@ private:
 	"For now it's only in\nIt's egg stage.\nIt will grow slowly!\nI'm sure you two will\nHave a good time \nTogether!\nPlease go next\nAnd select your Nooni..."
 	};
 };
-
