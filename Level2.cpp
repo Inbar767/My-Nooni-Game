@@ -6,7 +6,6 @@
 #include "BigPam.h"
 #include "ToysMenu.h"
 #include "FoodMenu.h"
-#include <iostream>
 
 //Constructor gets a data, sounds, effects and a pet
 Level2::Level2(gameDataRef data, SoundManage* sounds, EffectsControl *effects, Pet *pet) :
