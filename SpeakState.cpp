@@ -1,4 +1,3 @@
-﻿
 #include "SmallPam.h"
 #include "BigPam.h"﻿
 #include "SpeakState.h"
@@ -8,7 +7,7 @@
 SpeakState::SpeakState(gameDataRef data, SoundManage* sounds, EffectsControl* effects, Pet *pet, std::vector <bool>& blockedWords) :
 	GameState(data, sounds, effects, pet), blockedWords(blockedWords), isSpeaking(false), isLearning(false), wordIndex(0)
 {
-	sounds->switchBackground(SoundBackgroundType::SPEAK_STATE_SOUND);
+	sounds->switchBackground(SoundManage::SoundBackgroundType::SPEAK_STATE_SOUND);
 	//Checks if at least one of the words isn't blocked and if so - changes actionType to be stand
 	for (bool word : blockedWords)
 	{
@@ -105,7 +104,7 @@ bool SpeakState::handleInput(sf::Event event)
 					{
 						if (data->input.isSpriteClicked(wordsButtons.at(wordIndex), sf::Mouse::Left, data->window))
 						{
-							sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+							sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 							speak(wordIndex); //Starts speak
 							break;
 						}
@@ -174,9 +173,9 @@ void SpeakState::update(float dt)
 void SpeakState::touchPet()
 {
 	pet->beingPetted();
-	sounds->playActionSound(SoundActionType::PET_SOUND);
+	sounds->playActionSound(SoundManage::SoundActionType::PET_SOUND);
 	currentAction = ActioType::PETTED;
-	effects->startEffect(EffectType::PET_EFFECT);
+	effects->startEffect(EffectsControl::EffectType::PET_EFFECT);
 	startPetTime = clock.getElapsedTime().asSeconds();
 }
 
@@ -209,7 +208,7 @@ void SpeakState::gameOver()
 //Remove state
 void SpeakState::removeState()
 {
-	sounds->switchBackground(SoundBackgroundType::MAIN_GAME_SOUND);
+	sounds->switchBackground(SoundManage::SoundBackgroundType::MAIN_GAME_SOUND);
 	GameState::removeState();
 }
 
