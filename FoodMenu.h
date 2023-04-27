@@ -3,19 +3,20 @@
 #include "Menu.h"
 #include <array>
 
-enum FoodType {
-	MILK = 2,
-	STRAWBERRY,
-	SALAD,
-	BURGER,
-	PIZZA,
-	CHOCOLATE,
-};
-
 //A child class of Menu - for food menu
 class FoodMenu : public Menu
 {
 public:
+
+	enum FoodType {
+		MILK = 2,
+		STRAWBERRY,
+		SALAD,
+		BURGER,
+		PIZZA,
+		CHOCOLATE,
+	};
+
 	//Constructor
 	FoodMenu(gameDataRef data, int elementsNumber);
 	//Destructor
