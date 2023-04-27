@@ -2,7 +2,8 @@
 #include "Definitions.h"
 
 //Constructor gets a data
-Accessorizes::Accessorizes(gameDataRef data) : visibleTable(false), typeUsed(AccessoryType::NO_ACCESSORY), data(data)
+Accessorizes::Accessorizes(gameDataRef data) :
+	visibleTable(false), typeUsed(Accessorizes::AccessoryType::NO_ACCESSORY), data(data)
 {
 	data->assets.loadTexture("Accessorize 0", REFRIGERATOR_FILE);
 	data->assets.loadTexture("Accessorize 1", BED_FILE);
@@ -30,22 +31,21 @@ void Accessorizes::setVisibleTable()
 }
 
 //Handles input if one accessory is being touched by the mouse
-AccessoryType Accessorizes::handleInput(sf::Event event)
+Accessorizes::AccessoryType Accessorizes::handleInput(sf::Event event)
 {
 	for (int accessoryIndex = 0; accessoryIndex < ACCESSORIES_NUBER - 1; accessoryIndex++)
 	{
 		if (data->input.isSpriteClicked(accessorizes.at(accessoryIndex), sf::Mouse::Left, data->window))
 		{
-			
-			if (accessoryIndex <= static_cast<int>(AccessoryType::BED)) //If accessory's image is changing to being used
+			if (accessoryIndex <= static_cast<int>(Accessorizes::AccessoryType::BED)) //If accessory's image is changing to being used
 			{
-				typeUsed = static_cast<AccessoryType>(accessoryIndex);
+				typeUsed = static_cast<Accessorizes::AccessoryType>(accessoryIndex);
 				accessorizes.at(accessoryIndex).setTexture(data->assets.getTexture("Accessorize Used " + std::to_string(accessoryIndex)));
 			}
 			return typeUsed;
 		}
 	}
-	return AccessoryType::NO_ACCESSORY;
+	return Accessorizes::AccessoryType::NO_ACCESSORY;
 }
 
 //Draws accessorizes
@@ -60,11 +60,11 @@ void Accessorizes::draw()
 //Stops the use of accessory
 void Accessorizes::stopUse()
 {
-	if (typeUsed == AccessoryType::REFRIGERATOR || typeUsed == AccessoryType::BED)
+	if (typeUsed == Accessorizes::AccessoryType::REFRIGERATOR || typeUsed == Accessorizes::AccessoryType::BED)
 	{
 		int typeIndex = static_cast<int>(typeUsed);
 		accessorizes.at(typeIndex).setTexture(data->assets.getTexture("Accessorize " + std::to_string(typeIndex)));
-		typeUsed = AccessoryType::NO_ACCESSORY;
+		typeUsed = Accessorizes::AccessoryType::NO_ACCESSORY;
 	}
 }
 
