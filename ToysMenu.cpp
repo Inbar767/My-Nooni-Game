@@ -24,7 +24,7 @@ int ToysMenu::handleInput()
 	int MenuChoice = Menu::handleInput();
 	if (MenuChoice != EXIT_MENU && MenuChoice != NO_ELEMENT_CHOSEN)
 	{
-		MenuChoice += static_cast<int>(ToysType::BALL); //If element was chosen - set index to match ToysType
+		MenuChoice += static_cast<int>(ToysMenu::ToysType::BALL); //If element was chosen - set index to match ToysType
 	}
 	return MenuChoice;
 }
