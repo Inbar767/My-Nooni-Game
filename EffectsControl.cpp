@@ -36,19 +36,22 @@ void EffectsControl::addEffects()
 	effects.at(static_cast<int>(EffectsControl::EffectType::SLEEP_EFFECT))->addAction("effect", 0, 22, 0.04, false);
 	effects.at(static_cast<int>(EffectsControl::EffectType::BATH_EFFECT))->addAction("effect", 0, 25, 0.09, false);
 
-	for (int foodIndex = static_cast<int>(EffectsControl::EffectType::MILK_EFFECT); foodIndex <= static_cast<int>(EffectsControl::EffectType::CHOCOLATE_EFFECT); foodIndex++)
+	for (int foodIndex = static_cast<int>(EffectsControl::EffectType::MILK_EFFECT); 
+	     foodIndex <= static_cast<int>(EffectsControl::EffectType::CHOCOLATE_EFFECT); foodIndex++)
 	{
 		effects.at(foodIndex)->addAction("effect", 0, 3, 2.0f, false);
 	}
 
-	for (int toyIndex = static_cast<int>(EffectsControl::EffectType::BALL_EFFECT); toyIndex <= static_cast<int>(EffectsControl::EffectType::CAR_EFFECT); toyIndex++)
+	for (int toyIndex = static_cast<int>(EffectsControl::EffectType::BALL_EFFECT); 
+	     toyIndex <= static_cast<int>(EffectsControl::EffectType::CAR_EFFECT); toyIndex++)
 	{
 		effects.at(toyIndex)->addAction("effect", 0, 9, 0.05f, true);
 	}
 
 	effects.at(static_cast<int>(EffectsControl::EffectType::PET_EFFECT))->addAction("effect", 0, 7, 0.09f, false);
 
-	for (int growIndex = static_cast<int>(EffectsControl::EffectType::GROW_EGG_EFFECT); growIndex <= static_cast<int>(EffectsControl::EffectType::GROW_BABY_EFFECT); growIndex++)
+	for (int growIndex = static_cast<int>(EffectsControl::EffectType::GROW_EGG_EFFECT); 
+	     growIndex <= static_cast<int>(EffectsControl::EffectType::GROW_BABY_EFFECT); growIndex++)
 	{
 		effects.at(growIndex)->addAction("effect", 0, 9, 0.2f, false);
 	}
