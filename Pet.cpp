@@ -1,23 +1,23 @@
-﻿#include "Pet.h"
+#include "Pet.h"
 #include <iostream>
 
 //Constructor gets a data, sounds and animal type and creates the pet according
-Pet::Pet(gameDataRef data, NooniName petType) :
+Pet::Pet(gameDataRef data, Pet::NooniName petType) :
 	data(data), petType(petType), currentAction(ActioType::STAND), age("egg"), currentMood(MoodType::GREEAN_MOOD), needsNumber(1)
 {
 	std::string animalFolder{}; //String of the folder name of the chosen pet
 	switch (petType)
 	{
-	case NooniName::ANGEL:
+	case Pet::NooniName::ANGEL:
 		animalFolder = ANGEL_FOLDER;
 		break;
-	case NooniName::COCO:
+	case Pet::NooniName::COCO:
 		animalFolder = COCO_FOLDER;
 		break;
-	case NooniName::FIFI:
+	case Pet::NooniName::FIFI:
 		animalFolder = FIFI_FOLDER;
 		break;
-	default: case NooniName::BOO:
+	default: case Pet::NooniName::BOO:
 		animalFolder = BOO_FOLDER;
 		break;
 	}
@@ -26,13 +26,11 @@ Pet::Pet(gameDataRef data, NooniName petType) :
 	setAnimation();
 
 	heart = new Heart(data);
-
 	//Sets pet's needs
-	for (NeedType needIndex = NeedType::LOVE; needIndex <= NeedType::BORED; ++(int&)needIndex)
+	for (Need::NeedType needIndex = Need::NeedType::LOVE; needIndex <= Need::NeedType::BORED; ++(int&)needIndex)
 	{
 		needs[needIndex] = (new Need(data, needIndex));
 	}
-	
 }
 
 //Sets the pet's animation by different actions
@@ -65,7 +63,7 @@ void Pet::setAnimation()
 }
 
 //Gets pet's type
-NooniName Pet::getType()
+Pet::NooniName Pet::getType()
 {
 	return petType;
 }
