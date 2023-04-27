@@ -1,4 +1,4 @@
-﻿#include "Level2.h"
+#include "Level2.h"
 #include "Level3.h"
 #include "SpeakState.h"
 #include "YardState.h"
@@ -38,14 +38,14 @@ bool Level2::handleInput(sf::Event event)
 		{
 			if (currentAction == ActioType::STAND)
 			{
-				AccessoryType choice{ accessories->handleInput(event) };
-				if (choice != AccessoryType::NO_ACCESSORY)
+				Accessorizes::AccessoryType choice{ accessories->handleInput(event) };
+				if (choice != Accessorizes::AccessoryType::NO_ACCESSORY)
 				{
 					useAccessorize(choice); //Use chosen accessory
 				}
 				else if (data->input.isSpriteClicked(speakButton, sf::Mouse::Left, data->window))
 				{
-					sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+					sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 					currentAction = ActioType::OTHER_STATE;
 					data->machine.addState(StateRef(new SpeakState(data, sounds, effects, pet, blockedWords)), false);
 				}
@@ -57,7 +57,7 @@ bool Level2::handleInput(sf::Event event)
 						if ((mousePosition.x >= TOYBOX_LEFT_X && mousePosition.x <= TOYBOX_RIGHT_X) &&
 							(mousePosition.y >= TOYBOX_LEFT_Y && mousePosition.y <= TOYBOX_RIGHT_Y))
 						{
-							useAccessorize(AccessoryType::TOY_BOX);
+							useAccessorize(Accessorizes::AccessoryType::TOY_BOX);
 						}
 					}
 				}
@@ -119,7 +119,7 @@ void Level2::feed()
 {
 	pet->feed();
 	accessories->setVisibleTable(); //Show table to eat on
-	sounds->playActionSound(SoundActionType::EAT_SOUND);
+	sounds->playActionSound(SoundManage::SoundActionType::EAT_SOUND);
 	currentAction = ActioType::EAT;
 }
 
@@ -128,8 +128,8 @@ void Level2::goSleep()
 {
 	pet->setPosition(sf::Vector2f(310, 300));
 	pet->goSleep();
-	sounds->playActionSound(SoundActionType::SLEEP_SOUND);
-	effects->startEffect(EffectType::SLEEP_EFFECT);
+	sounds->playActionSound(SoundManage::SoundActionType::SLEEP_SOUND);
+	effects->startEffect(EffectsControl::EffectType::SLEEP_EFFECT);
 	currentAction = ActioType::SLEEP;
 	xp = 10;
 }
@@ -139,27 +139,27 @@ void Level2::shower()
 {
 	pet->setPosition(sf::Vector2f(680, 248));
 	pet->shower();
-	sounds->playActionSound(SoundActionType::SHOWER_SOUND);
-	effects->startEffect(EffectType::BATH_EFFECT);
+	sounds->playActionSound(SoundManage::SoundActionType::SHOWER_SOUND);
+	effects->startEffect(EffectsControl::EffectType::BATH_EFFECT);
 	currentAction = ActioType::SHOWER;
 	xp = 10;
 }
 
 //Start Accessorize's action
-void Level2::useAccessorize(AccessoryType accessorizeType)
+void Level2::useAccessorize(Accessorizes::AccessoryType accessorizeType)
 {
 	switch (accessorizeType)
 	{
-	case AccessoryType::REFRIGERATOR:
+	case Accessorizes::AccessoryType::REFRIGERATOR:
 		currentAction = ActioType::OPEN_REFRIGERATOR;
 		break;
-	case AccessoryType::BED:
+	case Accessorizes::AccessoryType::BED:
 		goSleep();
 		break;
-	case AccessoryType::BATH:
+	case Accessorizes::AccessoryType::BATH:
 		shower();
 		break;
-	case AccessoryType::TOY_BOX:
+	case Accessorizes::AccessoryType::TOY_BOX:
 		currentAction = ActioType::OPEN_BOX;
 		break;
 	default:
@@ -203,7 +203,7 @@ void Level2::menuChoice()
 	choice = menus[menuIdex]->handleInput();
 	if (choice != Menu::NO_ELEMENT_CHOSEN)
 	{
-		sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 		if (choice == Menu::EXIT_MENU)
 		{
 			currentAction = ActioType::STAND;
@@ -212,14 +212,14 @@ void Level2::menuChoice()
 		{
 			if (currentAction == ActioType::OPEN_REFRIGERATOR)
 			{
-				effects->startEffect(static_cast<EffectType>(choice));
+				effects->startEffect(static_cast<EffectsControl::EffectType>(choice));
 				xp = ((FoodMenu *)menus[0])->getFoodXp(choice); //Gets xp of chosen food
 				feed();
 			}
 			else
 			{
 				currentAction = ActioType::OTHER_STATE;
-				data->machine.addState(StateRef(new YardState(data, sounds, effects, pet, static_cast<ToysType>(choice))), false);
+				data->machine.addState(StateRef(new YardState(data, sounds, effects, pet, static_cast<ToysMenu::ToysType>(choice))), false);
 			}
 		}
 	accessories->stopUse();
@@ -230,18 +230,17 @@ void Level2::menuChoice()
 void Level2::levelUp()
 {
 	currentAction = ActioType::GROW;
-	sounds->playActionSound(SoundActionType::GROW_SOUND);
+	sounds->playActionSound(SoundManage::SoundActionType::GROW_SOUND);
 	pet->grow();
-	effects->startEffect(EffectType::GROW_BABY_EFFECT);
+	effects->startEffect(EffectsControl::EffectType::GROW_BABY_EFFECT);
 }
 
 //Destructor
 Level2::~Level2()
 {
 	delete pam;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < menus.size(); i++)
 	{
 		delete menus[i];
 	}
-	delete[] menus;
 }
