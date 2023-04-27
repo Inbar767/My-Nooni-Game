@@ -72,7 +72,7 @@ bool GameState::handleInput(sf::Event event)
 	}
 	if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
 	{
-		sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 		removeState();
 		return true;
 	}
@@ -82,7 +82,7 @@ bool GameState::handleInput(sf::Event event)
 //Pause the game
 void GameState::pause()
 {
-	sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+	sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 	sounds->pause();
 	isPause = true;
 	exactTime += clock.getElapsedTime().asSeconds();
