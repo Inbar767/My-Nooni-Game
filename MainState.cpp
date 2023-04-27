@@ -28,7 +28,7 @@ bool MainState::handleInput(sf::Event event)
 {
 	if (data->input.isSpriteClicked(playButton, sf::Mouse::Left, data->window))
 	{
-		sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 		data->machine.addState(StateRef(new SelectState(data, sounds)), false);
 	}
 	return true;
