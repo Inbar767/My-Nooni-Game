@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "State.h"
 #include "GameState.h"
@@ -14,7 +14,7 @@ class YardState : public GameState
 {
 public:
 	//Constructor
-	YardState(gameDataRef data, SoundManage* sounds, EffectsControl *effects, Pet* pet, ToysType gamePlayed);
+	YardState(gameDataRef data, SoundManage* sounds, EffectsControl *effects, Pet* pet, ToysMenu::ToysType gamePlayed);
 	//Destructor
 	~YardState() { }
 	//Init
@@ -40,11 +40,10 @@ private:
 
 	TicTacToe* ticTacToe;
 
-	ToysType gamePlayed;
+	ToysMenu::ToysType gamePlayed;
 	bool isPlayed; //Is the pet playing at the moment
 	int gameStatus;
 
 	const float PET_PLAYS_TIME = 2.0f;
 	const int PLAYING_PET_XP = 2;
 };
-
