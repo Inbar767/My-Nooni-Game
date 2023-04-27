@@ -37,7 +37,7 @@ private:
 	std::vector <sf::Sprite> accessorizes;
 
 	bool visibleTable; //Is the table visible
-	Accessorizes::AccessoryType typeUsed; //Which accessory is being used
+	AccessoryType typeUsed; //Which accessory is being used
 
 	gameDataRef data;
 };
