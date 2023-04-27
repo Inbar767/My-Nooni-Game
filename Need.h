@@ -54,4 +54,7 @@ private:
 
 	sf::Sprite SpriteIcon;
 	sf::Sprite spriteScale;
+
+	const int X_POSITION = 5;
+	const int Y_FIRST_POSITION = 230;
 };
