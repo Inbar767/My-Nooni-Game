@@ -2,33 +2,32 @@
 #include "Definitions.h"
 
 //Constructor gets a data and a need type (being petted, hungry, sleep, clean and fun)
-Need::Need(gameDataRef data, NeedType needType) :
+Need::Need(gameDataRef data, Need::NeedType needType) :
 	data(data), needType(needType), xp(MoodType::GREEAN_MOOD), currentMood(MoodType::GREEAN_MOOD), showScale(false)
 {
 	//Sets the position of the need's icon
-	int firstY = 230;
-	int xIcon = 5, yIcon = NEED_ICON_SIZE * (needType + 1) + firstY;
+	int y = NEED_ICON_SIZE * (needType + 1) + Y_FIRST_POSITION;
 	std::string typeName; //Name of need's type
 
 	switch (needType)
 	{
-	case NeedType::LOVE:
+	case Need::NeedType::LOVE:
 		typeName = "pet";
 		scaleTime = 4.5f;
 		break;
-	case NeedType::HUNGER:
+	case Need::NeedType::HUNGER:
 		typeName = "hungry";
 		scaleTime = 4.0f;
 		break;
-	case NeedType::TIRED:
+	case Need::NeedType::TIRED:
 		typeName = "sleep";
 		scaleTime = 6.0f;
 		break;
-	case NeedType::CLEAN:
+	case Need::NeedType::CLEAN:
 		typeName = "clean";
 		scaleTime = 5.0f;
 		break;
-	default : case NeedType::BORED:
+	default : case Need::NeedType::BORED:
 		typeName = "fun";
 		scaleTime = 3.5f;
 		break;
@@ -36,22 +35,22 @@ Need::Need(gameDataRef data, NeedType needType) :
 	//Loads icon's image
 	data->assets.loadTexture("Need Icon " + typeName, NEED_SCALE + typeName + ".png");
 	SpriteIcon.setTexture(data->assets.getTexture("Need Icon " + typeName));
-	SpriteIcon.setPosition(sf::Vector2f(xIcon, yIcon));
+	SpriteIcon.setPosition(sf::Vector2f(X_POSITION, y));
 
 	//Loading scale's images
-	for (int i = 0; i < NEED_SCALE_FRAMES; i++)
+	for (int scaleIndex = 0; scaleIndex < NEED_SCALE_FRAMES; scaleIndex++)
 	{
-		data->assets.loadTexture("Need Scale " + std::to_string(i), NEED_SCALE + std::to_string(NEED_SCALE_FRAMES - 1 - i) + ".png");
+		data->assets.loadTexture("Need Scale " + std::to_string(scaleIndex), NEED_SCALE + std::to_string(NEED_SCALE_FRAMES - 1 - scaleIndex) + ".png");
 	}
 	spriteScale.setTexture(data->assets.getTexture("Need Scale " + std::to_string(0)));
-	spriteScale.setPosition(sf::Vector2f(xIcon + SpriteIcon.getLocalBounds().height - 2, yIcon + SpriteIcon.getLocalBounds().height / 2));
+	spriteScale.setPosition(sf::Vector2f(X_POSITION + SpriteIcon.getLocalBounds().height - 2, y + SpriteIcon.getLocalBounds().height / 2));
 
 	//Set mood circle around icon
 	ShapeIcon.setRadius(SpriteIcon.getLocalBounds().height / 2 + NEEDS_CIRCLE_DISTANCE);
 	ShapeIcon.setFillColor(sf::Color::Green);
 	ShapeIcon.setOutlineColor(sf::Color::White);
 	ShapeIcon.setOutlineThickness(NEEDS_CIRCLE_DISTANCE);
-	ShapeIcon.setPosition(sf::Vector2f(xIcon - NEEDS_CIRCLE_DISTANCE, yIcon - NEEDS_CIRCLE_DISTANCE));
+	ShapeIcon.setPosition(sf::Vector2f(X_POSITION - NEEDS_CIRCLE_DISTANCE, y - NEEDS_CIRCLE_DISTANCE));
 }
 
 //Gets the current mood of the need
