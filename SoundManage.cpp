@@ -8,7 +8,7 @@ SoundManage::SoundManage(gameDataRef data) :
 {
 	loadSounds();
 	//Sets background sound
-	backgroundSound.setBuffer(backgroundBuffer.at(SoundBackgroundType::MAIN_GAME_SOUND));
+	backgroundSound.setBuffer(backgroundBuffer.at(SoundManage::SoundBackgroundType::MAIN_GAME_SOUND));
 	backgroundSound.play();
 	//Sets volume for each sound
 	backgroundSound.setVolume(BACKGROUND_VOLUME);
@@ -71,7 +71,7 @@ void SoundManage::setSound()
 }
 
 //Gets a sound number and switches the background sound 
-void SoundManage::switchBackground(SoundBackgroundType sound)
+void SoundManage::switchBackground(SoundManage::SoundBackgroundType sound)
 {
 	int soundIndex = static_cast<int>(sound);
 	if (soundIndex < backgroundBuffer.size())
@@ -82,7 +82,7 @@ void SoundManage::switchBackground(SoundBackgroundType sound)
 }
 
 //Gets a game sound number and plays it 
-void SoundManage::playGameSound(SoundGameType sound)
+void SoundManage::playGameSound(SoundManage::SoundGameType sound)
 {
 	int soundIndex = static_cast<int>(sound);
 	if (soundIndex < gameSoundBuffer.size())
@@ -93,7 +93,7 @@ void SoundManage::playGameSound(SoundGameType sound)
 }
 
 //Gets an action sound number and plays it 
-void SoundManage::playActionSound(SoundActionType sound)
+void SoundManage::playActionSound(SoundManage::SoundActionType sound)
 {
 	int soundIndex = static_cast<int>(sound);
 	if (soundIndex < actionsSoundBuffer.size())
@@ -101,7 +101,7 @@ void SoundManage::playActionSound(SoundActionType sound)
 		actionSound.setBuffer(actionsSoundBuffer.at(soundIndex));
 		actionSound.play();
 		actionSoundPlaying = soundIndex;
-		if (sound == SoundActionType::PLAY_SOUND)
+		if (sound == SoundManage::SoundActionType::PLAY_SOUND)
 		{
 			actionSound.setPitch(1.5);
 		}
@@ -144,13 +144,13 @@ void SoundManage::stop()
 			actionSound.play();
 		}
 		actionSound.stop();
-		if (actionSoundPlaying == static_cast<int>(SoundActionType::PLAY_SOUND))
+		if (actionSoundPlaying == static_cast<int>(SoundManage::SoundActionType::PLAY_SOUND))
 		{
 			actionSound.setPitch(1);
 		}
 		else
 		{
-			playGameSound(SoundGameType::HAPPY_PET_SOUND);
+			playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
 		}
 		actionSoundPlaying = NO_SOUND;
 	}
