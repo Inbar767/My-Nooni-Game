@@ -5,29 +5,30 @@
 #include <vector>
 #include "Game.h"
 
-enum SoundGameType {
-	MOUSE_CLICKED_SOUND,
-	HAPPY_PET_SOUND
-};
-
-enum SoundActionType {
-	PET_SOUND,
-	SHOWER_SOUND,
-	EAT_SOUND,
-	GROW_SOUND,
-	SLEEP_SOUND,
-	PLAY_SOUND
-};
-
-enum SoundBackgroundType {
-	MAIN_GAME_SOUND,
-	SPEAK_STATE_SOUND
-};
-
 //A class for all game's sounds
 class SoundManage
 {
 public:
+
+	enum SoundGameType {
+		MOUSE_CLICKED_SOUND,
+		HAPPY_PET_SOUND
+	};
+
+	enum SoundActionType {
+		PET_SOUND,
+		SHOWER_SOUND,
+		EAT_SOUND,
+		GROW_SOUND,
+		SLEEP_SOUND,
+		PLAY_SOUND
+	};
+
+	enum SoundBackgroundType {
+		MAIN_GAME_SOUND,
+		SPEAK_STATE_SOUND
+	};
+
 	//Constructor
 	SoundManage(gameDataRef data);
 	//Destructor
@@ -37,11 +38,11 @@ public:
 	//Sets sounds volume - off or on
 	void setSound();
 	//Gets a sound number and switches the background sound 
-	void switchBackground(SoundBackgroundType sound);
+	void switchBackground(SoundManage::SoundBackgroundType sound);
 	//Gets a game sound number and plays it 
-	void playGameSound(SoundGameType sound);
+	void playGameSound(SoundManage::SoundGameType sound);
 	//Gets an action sound number and plays it 
-	void playActionSound(SoundActionType sound);
+	void playActionSound(SoundManage::SoundActionType sound);
 	//Gets a word number, plays it and returns it's time
 	float speak(int word);
 	//Gets a word number to learn, plays it and returns it's time
