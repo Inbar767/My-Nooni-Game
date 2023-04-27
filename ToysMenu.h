@@ -2,16 +2,17 @@
 
 #include "Menu.h"
 
-enum ToysType {
-	BALL = 8,
-	CAR,
-	TIC_TAC_TOE
-};
-
 //A child class of Menu - for toys menu
 class ToysMenu : public Menu
 {
 public:
+
+	enum ToysType {
+		BALL = 8,
+		CAR,
+		TIC_TAC_TOE
+	};
+
 	//Constructor
 	ToysMenu(gameDataRef data, int elementsNumber);
 	//Destructor
