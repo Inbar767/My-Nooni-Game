@@ -37,22 +37,22 @@ void SelectState::init()
 	effect.setTexture(data->assets.getTexture("Menu Effect"));
 
 	//Position eggs
-	int  startX = 300, startY= 220, y = startY, x = startX;
-	for (int i = 0; i < NUMBER_EGG; i++)
+	int  y = Y_FIRST_POSITION, x = X_FIRST_POSITION;
+	for (int eggIndex = 0; eggIndex < NUMBER_EGG; eggIndex++)
 	{
-		if (i % 2 == 1)
+		if (eggIndex % NUMBER_EGG_ROW == 1)
 		{
 			x += DIST_EGG_WIDTH;
 		}
 		else
 		{
-			x = startX;
+			x = X_FIRST_POSITION;
 		}
-		if (i == 2)
+		if (eggIndex == NUMBER_EGG_ROW)
 		{
 			y += DIST_EGG_HEIGHT;
 		}
-		animalButtons[i].setPosition(sf::Vector2f(x, y));
+		animalButtons[eggIndex].setPosition(sf::Vector2f(x, y));
 	}
 	//Loads font for text
 	if (!font.loadFromFile("fonts/retganon.ttf"))
@@ -63,6 +63,7 @@ void SelectState::init()
 	{
 		for (int i = 0; i < NUMBER_EGG; i++)
 		{
+			text[i].setString(static_cast<std::string>(EGGS_NAMES[i]));
 			text[i].setFont(font);
 			text[i].setCharacterSize(25);
 			text[i].setFillColor(sf::Color{ 249, 85, 162, 255 });
@@ -70,11 +71,6 @@ void SelectState::init()
 				animalButtons[i].getGlobalBounds().getPosition().y + animalButtons[i].getGlobalBounds().height + 2));
 		}
 	}
-	//Sets eggs' names
-	text[0].setString("Angel");
-	text[1].setString("Coco");
-	text[2].setString("Fifi");
-	text[3].setString("Boo");
 }
 
 //Handles input in case some egg is being touched by the mouse
@@ -112,15 +108,15 @@ bool SelectState::handleInput(sf::Event event)
 			if (data->input.isSpriteClicked(animalButtons[eggIndex], sf::Mouse::Left, data->window))
 			{
 				Game::startNewGame();
-				sounds->playGameSound(SoundGameType::HAPPY_PET_SOUND);
-				data->machine.addState(StateRef(new Level1(data, sounds, static_cast<NooniName>(eggIndex))), true);
+				sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
+				data->machine.addState(StateRef(new Level1(data, sounds, static_cast<Pet::NooniName>(eggIndex))), true);
 				return true;
 			}
 		}
 	}
 	if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
 	{
-		sounds->playGameSound(SoundGameType::MOUSE_CLICKED_SOUND);
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 		data->machine.removeState();
 	}
 	return true;
