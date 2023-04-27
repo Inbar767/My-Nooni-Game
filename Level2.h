@@ -2,6 +2,7 @@
 
 #include "LevelState.h"
 #include "Menu.h"
+#include <array>
 
 //A child class of LevelState - is the second level of the game
 class Level2 : public LevelState
@@ -26,7 +27,7 @@ protected:
 	//Start action of taking shower
 	void shower();
 	//Start Accessorize's action
-	void useAccessorize(AccessoryType accessorizeType);
+	void useAccessorize(Accessorizes::AccessoryType accessorizeType);
 	//Stops current action
 	void stopAction();
 	//Choose from the menu
@@ -34,7 +35,7 @@ protected:
 	//Level up the pet
 	virtual void levelUp();
 
-	Menu** menus = new Menu * [2]; //Array of two menus
+	std::array < Menu*, 2> menus;
 
 	std::vector <bool> blockedWords; //Vector of the blocked words the pet doesn't know yet
 
