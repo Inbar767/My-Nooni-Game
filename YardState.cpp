@@ -1,21 +1,21 @@
-﻿#include "YardState.h"
+#include "YardState.h"
 #include <iostream>
 
 //Constructor get a data, sounds, effects, a pet and a type of game to play with the pet
-YardState::YardState(gameDataRef data, SoundManage* sounds, EffectsControl* effects, Pet* pet, ToysType gamePlayed) :
+YardState::YardState(gameDataRef data, SoundManage* sounds, EffectsControl* effects, Pet* pet, ToysMenu::ToysType gamePlayed) :
     GameState(data, sounds, effects, pet), gamePlayed(gamePlayed)
 {
     currentAction = ActioType::STAND;
-    if (gamePlayed == ToysType::TIC_TAC_TOE)
+    if (gamePlayed == ToysMenu::ToysType::TIC_TAC_TOE)
     {
         isPlayed = true;
         ticTacToe = new TicTacToe(data);
     }
     else
     {
-        if (gamePlayed < ToysType::BALL && gamePlayed > ToysType::TIC_TAC_TOE) //Checks if gameType has a valid value
+        if (gamePlayed < ToysMenu::ToysType::BALL && gamePlayed > ToysMenu::ToysType::TIC_TAC_TOE) //Checks if gameType has a valid value
         {
-            this->gamePlayed = ToysType::BALL;
+            this->gamePlayed = ToysMenu::ToysType::BALL;
         }
         isPlayed = false;
     }
@@ -35,7 +35,7 @@ bool YardState::handleInput(sf::Event event)
     if (!GameState::handleInput(event) && !isPause)
     {
         bool isPetTouched = pet->handleInput(event);
-        if ((gamePlayed == ToysType::TIC_TAC_TOE))
+        if ((gamePlayed == ToysMenu::ToysType::TIC_TAC_TOE))
         {
           if (isPlayed)
           {
@@ -67,7 +67,7 @@ void YardState::update(float dt)
         }
         else
         {
-            if ((gamePlayed != ToysType::TIC_TAC_TOE))
+            if ((gamePlayed != ToysMenu::ToysType::TIC_TAC_TOE))
             {
                 if (isPlayed && !effects->isEffect())
                 {
@@ -82,7 +82,7 @@ void YardState::update(float dt)
                   pet->startPlay();
                   stopAction(PLAYING_PET_XP * 3);
                   pet->startPlay();
-                  sounds->playGameSound(SoundGameType::HAPPY_PET_SOUND);
+                  sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ void YardState::draw(float dt)
 {
     data->window.draw(background);
     pet->draw();
-    if (gamePlayed == ToysType::TIC_TAC_TOE)
+    if (gamePlayed == ToysMenu::ToysType::TIC_TAC_TOE)
     {
         ticTacToe->draw(dt);
     }
@@ -129,14 +129,14 @@ void YardState::startPlay()
 {
     currentAction = ActioType::PLAY;
     pet->startPlay();
-    sounds->playActionSound(SoundActionType::PLAY_SOUND);
+    sounds->playActionSound(SoundManage::SoundActionType::PLAY_SOUND);
     clock.restart();
 }
 
 //Start playing when pet is being touched
 void YardState::touchPet()
 {
-    effects->startEffect(static_cast<EffectType>(gamePlayed));
+    effects->startEffect(static_cast<EffectsControl::EffectType>(gamePlayed));
     startPlay(); //Make the pet start playing
     isPlayed = true;
 }
@@ -144,7 +144,7 @@ void YardState::touchPet()
 //Stops current action
 void YardState::stopAction(int xp)
 {
-    if (gamePlayed != ToysType::TIC_TAC_TOE)
+    if (gamePlayed != ToysMenu::ToysType::TIC_TAC_TOE)
     {
         isPlayed = false;
     }
