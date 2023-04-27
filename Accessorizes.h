@@ -23,7 +23,7 @@ public:
 	//Destructor
 	~Accessorizes() = default;
 	//Handles inout
-	AccessoryType handleInput(sf::Event event);
+	Accessorizes::AccessoryType handleInput(sf::Event event);
 	//Draws
 	void draw();
 	//Stop the use of an accessory
@@ -37,7 +37,7 @@ private:
 	std::vector <sf::Sprite> accessorizes;
 
 	bool visibleTable; //Is the table visible
-	AccessoryType typeUsed; //Which accessory is being used
+	Accessorizes::AccessoryType typeUsed; //Which accessory is being used
 
 	gameDataRef data;
 };
