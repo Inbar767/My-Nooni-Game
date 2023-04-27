@@ -7,7 +7,7 @@ class Level1 : public LevelState
 {
 public:
 	//Constructor
-	Level1(gameDataRef data, SoundManage* sounds, NooniName type);
+	Level1(gameDataRef data, SoundManage* sounds, Pet::NooniName type);
 	//Destructor 
 	~Level1();
 	//Updates the level
@@ -30,5 +30,3 @@ protected:
 	"Just press on your\nNooni as long as you \nWant to pet him!..."
 	};
 };
-
-
