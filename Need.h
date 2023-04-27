@@ -5,20 +5,21 @@
 #include "Game.h"
 #include "Definitions.h"
 
-enum NeedType {
+//A class for the pet's need
+class Need
+{
+public:
+	
+	enum NeedType {
 		LOVE,
 		HUNGER,
 		TIRED,
 		CLEAN,
 		BORED
-};
+	};
 
-//A class for the pet's need
-class Need
-{
-public:
 	//Constructor
-	Need(gameDataRef data, NeedType needType);
+	Need(gameDataRef data, Need::NeedType needType);
 	//Destructor
 	~Need() {}
 	//Gets the current mood of the need
