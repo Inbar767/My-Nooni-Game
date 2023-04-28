@@ -29,14 +29,11 @@ public:
 private:
 	sf::Sprite background;
 	sf::Sprite windowSprite;
-
 	sf::Sprite backButton;
 	sf::Sprite effect; //Effect of mouse touches an egg
-
 	sf::Font font;
-	sf::Text text[NUMBER_EGG]; //Array of eggs' names
-
-	sf::Sprite animalButtons[NUMBER_EGG];
+	std::array < sf::Text, NUMBER_EGG > eggName; 
+	std::array <sf::Sprite, NUMBER_EGG > eggButtons;
 
 	gameDataRef data;
 	SoundManage* sounds;
