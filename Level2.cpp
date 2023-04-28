@@ -11,7 +11,7 @@
 Level2::Level2(gameDataRef data, SoundManage* sounds, EffectsControl *effects, Pet *pet) :
 	LevelState(data, sounds, effects, pet)
 {
-	endLevel = 35;
+	endLevel = 300.0f;
 	menus[0] = new FoodMenu(data, FoodMenu::MAX_FOOD_ELEMENTS / 3); //Creates a menu for baby's food
 	menus[1] = new ToysMenu(data, ToysMenu::MAX_TOYS_ELEMENTS); //Creates a menu for toys
 
