@@ -9,7 +9,7 @@
 //Constructor gets a data, sounds, effects, a pet, vector of words and the type of the room
 Level3::Level3(gameDataRef data, SoundManage* sounds, EffectsControl* effects, Pet* pet, std::vector <bool> blockedWords) : Level2(data, sounds, effects, pet)
 {
-	endLevel = 30;
+	endLevel = 600.0f;
 	pam = new SmallPam(data, ADULT_PAM);
 	
 	menus[0] = new FoodMenu(data, FoodMenu::MAX_FOOD_ELEMENTS); //Creates a menu for adult's food
