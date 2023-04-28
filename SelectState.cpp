@@ -2,6 +2,9 @@
 #include "Level1.h"
 #include <iostream>
 
+Pet* pet;
+EffectsControl* effects;
+
 //Constructor gets a data and sounds
 SelectState::SelectState(gameDataRef data, SoundManage* sounds) : 
 	data(data), sounds(sounds), isInstruction(true), isEffect(false)
@@ -102,7 +105,8 @@ bool SelectState::handleInput(sf::Event event)
 					{
 						Game::startNewGame();
 						sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
-						data->machine.addState(StateRef(new Level1(data, sounds, static_cast<Pet::NooniName>(eggIndex))), true);
+						isGameStarted = true;
+						data->machine.addState(StateRef(new Level1(data, sounds, (pet = new Pet(data, static_cast<Pet::NooniName>(eggIndex))), (effects = new EffectsControl(data)))), false);
 					}
 					break;
 				}
@@ -145,8 +149,20 @@ void SelectState::draw(float dt)
 	data->window.draw(backButton);
 }
 
+//Resumes this State
+void SelectState::resume()
+{
+	if (isGameStarted)
+	{
+		delete pet;
+		delete effects;
+	}
+}
+
 //Destructor
 SelectState::~SelectState() 
 {
 	delete pam; 
+	delete pet;
+	delete effects;
 }
