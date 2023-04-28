@@ -25,6 +25,8 @@ public:
 	void update(float dt);
 	//Draws
 	void draw(float dt);
+	//Resumes this State
+	void resume();
 
 private:
 	sf::Sprite background;
@@ -39,6 +41,7 @@ private:
 	SoundManage* sounds;
 	BigPam* pam;
 
+	bool isGameStarted = false;
 	bool isInstruction;
 	bool isEffect;
 	int effectTouch; //Which egg has the effect
