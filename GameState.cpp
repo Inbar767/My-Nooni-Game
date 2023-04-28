@@ -85,7 +85,10 @@ void GameState::pause()
 	sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
 	sounds->pause();
 	isPause = true;
-	exactTime += clock.getElapsedTime().asSeconds();
+	if (currentAction != ActioType::OTHER_STATE)
+	{
+		exactTime += clock.getElapsedTime().asSeconds();
+	}	
 }
 
 //Resumes the game
