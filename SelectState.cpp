@@ -74,16 +74,16 @@ void SelectState::init()
 //Handles input in case some egg is being touched by the mouse
 bool SelectState::handleInput(sf::Event event)
 {
-	if (isInstruction)
+	if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
 	{
-		pam->handleInput(event);
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
+		data->machine.removeState();
 	}
 	else
 	{
-		if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
+		if (isInstruction)
 		{
-			sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
-			data->machine.removeState();
+			pam->handleInput(event);
 		}
 		else if (isEffect && !eggButtons[effectTouch].getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(data->window).x, sf::Mouse::getPosition(data->window).y)))
 		{
