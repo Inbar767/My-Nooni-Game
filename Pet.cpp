@@ -260,9 +260,9 @@ MoodType Pet::getMood()
 {
 	MoodType lowest = MoodType::GREEAN_MOOD, needMood;
 	int countBlackMood = 0;
-	for (int needIndex = 0; needIndex < needsNumber ; needIndex++)
+	for(Need *need : needs)
 	{
-		if ((needMood = needs.at(needIndex)->getMood()) <= lowest)
+		if ((needMood = need->getMood()) <= lowest)
 		{
 			if (needMood == MoodType::BLACK_MOOD)
 			{
