@@ -7,7 +7,7 @@
 Level1::Level1(gameDataRef data, SoundManage* sounds, Pet::NooniName type) : 
 	LevelState(data, sounds, new EffectsControl(data), new Pet(data,type))
 {
-	endLevel = 10;
+	endLevel = 60.0f;
 	pam = new SmallPam(data, EGG_PAM);
 	pet->setPosition(sf::Vector2f(data->window.getSize().x / 2 - EGG_WIDTH / 2, EGG_Y_POSTION));
 }
