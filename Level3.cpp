@@ -35,9 +35,7 @@ void Level3::levelUp()
 //Destructor 
 Level3::~Level3()
 {
-	delete pet;
 	delete pam;
-	delete effects;
 	for (int i = 0; i < menus.size(); i++)
 	{
 		delete menus[i];
