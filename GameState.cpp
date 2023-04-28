@@ -49,7 +49,13 @@ void GameState::init()
 //Handles input and checks if buttons was being pressed
 bool GameState::handleInput(sf::Event event)
 {
-	if (!isPause)
+	if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
+	{
+		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
+		removeState();
+		return true;
+	}
+	else if (!isPause)
 	{
 		if ((event.type == sf::Event::LostFocus || data->input.isSpriteClicked(pauseButton, sf::Mouse::Left, data->window)))
 		{
@@ -69,12 +75,6 @@ bool GameState::handleInput(sf::Event event)
 			resume();
 			return true;
 		}
-	}
-	if (data->input.isSpriteClicked(backButton, sf::Mouse::Left, data->window))
-	{
-		sounds->playGameSound(SoundManage::SoundGameType::MOUSE_CLICKED_SOUND);
-		removeState();
-		return true;
 	}
 	return false;
 }
