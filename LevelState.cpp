@@ -29,12 +29,7 @@ bool LevelState::handleInput(sf::Event event)
 	{
 		if (!isPause)
 		{
-			if (currentAction == ActioType::INTRO)
-			{
-				pam->handleInput(event);
-				return true;
-			}
-			else if (pet->handleInput(event) && currentAction == ActioType::STAND)
+			if (pet->handleInput(event) && currentAction == ActioType::STAND)
 			{
 				touchPet();
 				return true;
