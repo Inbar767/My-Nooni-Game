@@ -4,7 +4,7 @@
 #include "BigPam.h"
 
 //Constructor gets a data, sounds and the type of the pet
-Level1::Level1(gameDataRef data, SoundManage* sounds, Pet::NooniName type) : 
+Level1::Level1(gameDataRef data, SoundManage* sounds, Pet* pet, EffectsControl* effects) : 
 	LevelState(data, sounds, new EffectsControl(data), new Pet(data,type))
 {
 	endLevel = 60.0f;
