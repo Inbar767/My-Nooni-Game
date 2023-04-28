@@ -7,7 +7,7 @@ class Level1 : public LevelState
 {
 public:
 	//Constructor
-	Level1(gameDataRef data, SoundManage* sounds, Pet::NooniName type);
+	Level1(gameDataRef data, SoundManage* sounds, Pet *pet, EffectsControl *effects);
 	//Destructor 
 	~Level1();
 	//Updates the level
