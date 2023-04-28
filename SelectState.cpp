@@ -93,17 +93,17 @@ bool SelectState::handleInput(sf::Event event)
 		{	
 			for (int eggIndex = 0; eggIndex < NUMBER_EGG; eggIndex++)
 			{
-				if (data->input.isSpriteClicked(eggButtons[eggIndex], sf::Mouse::Left, data->window))
-				{
-					Game::startNewGame();
-					sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
-					data->machine.addState(StateRef(new Level1(data, sounds, static_cast<Pet::NooniName>(eggIndex))), true);
-				}
 				if (eggButtons[eggIndex].getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(data->window).x, sf::Mouse::getPosition(data->window).y)))
 				{
 					isEffect = true;
 					effect.setPosition(sf::Vector2f(eggButtons[eggIndex].getPosition().x - 14, eggButtons[eggIndex].getPosition().y - 17));
 					effectTouch = eggIndex;
+					if (data->input.isSpriteClicked(eggButtons[eggIndex], sf::Mouse::Left, data->window))
+					{
+						Game::startNewGame();
+						sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
+						data->machine.addState(StateRef(new Level1(data, sounds, static_cast<Pet::NooniName>(eggIndex))), true);
+					}
 					break;
 				}
 			}
