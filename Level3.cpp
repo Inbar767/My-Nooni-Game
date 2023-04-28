@@ -17,7 +17,7 @@ Level3::Level3(gameDataRef data, SoundManage* sounds, EffectsControl* effects, P
 
 	this->blockedWords = blockedWords;
 	//Adds locked words the pet doesn't learn yet into blockedWords
-	for (int i = 0; i < WORDS_NUMBER; i++)
+	for (int wordIndex = 0; wordIndex < WORDS_NUMBER; wordIndex++)
 	{
 		this->blockedWords.push_back(true);
 	}
