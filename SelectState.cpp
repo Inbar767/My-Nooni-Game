@@ -48,14 +48,14 @@ void SelectState::init()
 	firstY = y = windowSprite.getGlobalBounds().height / NUMBER_EGG + windowSprite.getGlobalBounds().getPosition().y;
 	for (int eggIndex = 0; eggIndex < NUMBER_EGG; eggIndex++)
 	{
-		if (eggIndex % NUMBER_EGG_ROW == 1)
+		if (eggIndex % NUMBER_EGG_ROW != 0)
 		{
-			x += windowSprite.getGlobalBounds().width / 2;
+			x += windowSprite.getGlobalBounds().width / (NUMBER_EGG / 2);
 		}
 		else if (eggIndex == NUMBER_EGG_ROW)
 		{
 			x = firstX;
-			y += windowSprite.getGlobalBounds().height / 2;
+			y += windowSprite.getGlobalBounds().height / (NUMBER_EGG / 2);
 		}
 		eggButtons[eggIndex].setPosition(sf::Vector2f(x - eggButtons[eggIndex].getGlobalBounds().width / 2, y - eggButtons[eggIndex].getGlobalBounds().height / 2));
 	}
