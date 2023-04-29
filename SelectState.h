@@ -31,6 +31,7 @@ public:
 private:
 	sf::Sprite background;
 	sf::Sprite windowSprite;
+	sf::Sprite selectEggTitle;
 	sf::Sprite backButton;
 	sf::Sprite effect; //Effect of mouse touches an egg
 	sf::Font font;
@@ -46,10 +47,6 @@ private:
 	bool isEffect;
 	int effectTouch; //Which egg has the effect
 
-	const int DIST_EGG_WIDTH = 190;
-	const int DIST_EGG_HEIGHT = 140;
-	const int X_FIRST_POSITION = 300;
-	const int Y_FIRST_POSITION = 220;
 	const int NUMBER_EGG_ROW = 2;
 
 	const std::array < std::string_view, NUMBER_EGG > EGGS_NAMES = { "Angel", "Coco", "Fifi", "Boo" };
