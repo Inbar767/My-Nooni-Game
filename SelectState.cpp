@@ -26,6 +26,10 @@ void SelectState::init()
 	backButton.setPosition(sf::Vector2f(150,500));
 	data->assets.loadTexture("Menu Effect", SELECT_EFFECT);
 	effect.setTexture(data->assets.getTexture("Menu Effect"));
+	data->assets.loadTexture("Select Egg Title", SELECT_EGG_TITLE);
+	selectEggTitle.setTexture(data->assets.getTexture("Select Egg Title"));
+	selectEggTitle.setPosition(sf::Vector2f(windowSprite.getGlobalBounds().width / 2 + windowSprite.getGlobalBounds().getPosition().x - selectEggTitle.getGlobalBounds().width / 2,
+		windowSprite.getGlobalBounds().height / 2 + windowSprite.getGlobalBounds().getPosition().y - selectEggTitle.getGlobalBounds().height / 2));
 
 	//Init eggs buttons
 	data->assets.loadTexture("Select Menu Bunny Button", ANGEL_FOLDER + std::to_string(0) + ".png");
@@ -38,22 +42,21 @@ void SelectState::init()
 	eggButtons[3].setTexture(data->assets.getTexture("Select Menu Pug Button"));
 
 	//Position eggs
-	int  y = Y_FIRST_POSITION, x = X_FIRST_POSITION;
+	int firstX, x, firstY, y;
+	firstX = x = windowSprite.getGlobalBounds().width / NUMBER_EGG + windowSprite.getGlobalBounds().getPosition().x;
+	firstY = y = windowSprite.getGlobalBounds().height / NUMBER_EGG + windowSprite.getGlobalBounds().getPosition().y;
 	for (int eggIndex = 0; eggIndex < NUMBER_EGG; eggIndex++)
 	{
 		if (eggIndex % NUMBER_EGG_ROW == 1)
 		{
-			x += DIST_EGG_WIDTH;
+			x += windowSprite.getGlobalBounds().width / 2;
 		}
-		else
+		else if (eggIndex == NUMBER_EGG_ROW)
 		{
-			x = X_FIRST_POSITION;
+			x = firstX;
+			y += windowSprite.getGlobalBounds().height / 2;
 		}
-		if (eggIndex == NUMBER_EGG_ROW)
-		{
-			y += DIST_EGG_HEIGHT;
-		}
-		eggButtons[eggIndex].setPosition(sf::Vector2f(x, y));
+		eggButtons[eggIndex].setPosition(sf::Vector2f(x - eggButtons[eggIndex].getGlobalBounds().width / 2, y - eggButtons[eggIndex].getGlobalBounds().height / 2));
 	}
 	//Loads font for text
 	if (!font.loadFromFile("fonts/retganon.ttf"))
@@ -136,6 +139,7 @@ void SelectState::draw(float dt)
 	}
 	else
 	{
+		data->window.draw(selectEggTitle);
 		if (isEffect)
 		{
 			data->window.draw(effect);
