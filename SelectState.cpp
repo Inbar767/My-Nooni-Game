@@ -10,6 +10,7 @@ SelectState::SelectState(gameDataRef data, SoundManage* sounds) :
 	data(data), sounds(sounds), isInstruction(true), isEffect(false)
 {
 	pam = new BigPam(data, SELECT_PAM, !BigPam::TITLE, !BigPam::WINNING_TITLE);
+	effects = new EffectsControl(data);
 }
 
 //Init
@@ -109,7 +110,7 @@ bool SelectState::handleInput(sf::Event event)
 						Game::startNewGame();
 						sounds->playGameSound(SoundManage::SoundGameType::HAPPY_PET_SOUND);
 						isGameStarted = true;
-						data->machine.addState(StateRef(new Level1(data, sounds, (pet = new Pet(data, static_cast<Pet::NooniName>(eggIndex))), (effects = new EffectsControl(data)))), false);
+						data->machine.addState(StateRef(new Level1(data, sounds, (pet = new Pet(data, static_cast<Pet::NooniName>(eggIndex))), effects)), false);
 					}
 					break;
 				}
@@ -159,7 +160,6 @@ void SelectState::resume()
 	if (isGameStarted)
 	{
 		delete pet;
-		delete effects;
 	}
 }
 
