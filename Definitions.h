@@ -32,6 +32,7 @@
 
 //Title files
 #define LOGO "graphics/Titles/logo.png"
+#define SELECT_EGG_TITLE "graphics/Titles/SelectEgg.png"
 #define WIN_TITLE "graphics/Titles/youWin.png"
 #define LOOSE_TITLE "graphics/Titles/gameOver.png"
 #define ROOM_TITLE "graphics/Titles/"
