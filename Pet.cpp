@@ -215,20 +215,17 @@ void Pet::stopAction(int xp)
 		{
 			animation->startAction(age); //Sets action to standing action
 		}
-		if (currentAction >= ActioType::PETTED && currentAction <= ActioType::GROW)
+		if (currentAction < ActioType::GROW)
 		{
-			if (currentAction < ActioType::GROW)
-			{
-				int needIndex = static_cast<int>(currentAction);
-				needs.at(needIndex)->levelUp(xp); //Increases xp
-			}
-			else if (currentAction == ActioType::GROW)
-			{
-				animation->setColor(sf::Color::White);
-				mainPosition = sf::Vector2f(data->window.getSize().x / 2 - animation->getSpriteWidth() / 2,
-				EGG_Y_POSTION - (animation->getSpriteHeigth() - EGG_HEIGHT)); //Changes the main position according to new size
-				setPosition(mainPosition);
-			}
+			int needIndex = static_cast<int>(currentAction);
+			needs.at(needIndex)->levelUp(xp); //Increases xp
+		}
+		else if (currentAction == ActioType::GROW)
+		{
+			animation->setColor(sf::Color::White);
+			mainPosition = sf::Vector2f(data->window.getSize().x / 2 - animation->getSpriteWidth() / 2,
+			EGG_Y_POSTION - (animation->getSpriteHeigth() - EGG_HEIGHT)); //Changes the main position according to new size
+			setPosition(mainPosition);
 		}
 		heart->setIsSpinning(false);
 		currentAction = ActioType::STAND;
