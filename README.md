@@ -29,7 +29,10 @@ You can control the game with mouse only.<br><br>
  * speak - press on the speech button above the screen and select a button word so the pet will learn/say it<br><br>
 
 
-https://user-images.githubusercontent.com/118209251/234921368-4b8caf82-4681-4fe4-89b7-e3db2cb30548.mp4
+
+
+https://github.com/Inbar767/MyNooniGame/assets/118209251/e4e2966c-ab2b-4c62-9d94-1cd4e15b48d3
+
 
 
 
