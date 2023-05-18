@@ -5,13 +5,13 @@
 <b> Welcome to My Nooni game </b><br>
 </p>
 <h2>Let's Start</h2>
- The game starts with a girl called Pam saying she has 4 uniqe pets and asking you to take care for one of them. <br><br>
+The game begins with a girl named Pam requesting that you take care of one of her four unusual pets.<br><br>
  <img src="https://user-images.githubusercontent.com/118209251/231461918-202fbd73-8087-419b-b25c-8ab5c31f8d43.png" height="410" width="600" ><br>
- After her speech, you can see a window where you can select an egg and starts the game.<br>
- The pet has three levels of growing, one as an egg, second as a baby and last as an adult.<br>
- The pet can eat, sleep, take a bath, play with you and you can also teach it how to speak.<br>
- The pet has 5 needs : being petted, eat, sleep, take a bath and play. If all needs go down the game is over.<br><br>
- The game is very easy to understand and each level starts with a speech box with Pam giving an explanation on the level.<br><br>
+After she finishes speaking, a window opens, allowing you to choose an egg and begin the game.<br>
+The pet grows in three stages: first as an egg, then as a baby, and finally as an adult.<br>
+The pet can play with you, eat, sleep, shower, and learn how to speak.<br>
+Being petted, eating, sleeping, taking a bath, and playing are the pet's five basic requirements. If all goes down, the game is over.<br>
+The game is relatively simple to comprehend, and each level begins with a dialog box in which Pam describes the level.<br><br>
   
 <img src="https://user-images.githubusercontent.com/118209251/231451990-f5c76e49-2eba-409f-b8e6-c1650b1a4d6b.png" height="410" width="600" >
 <img src="https://user-images.githubusercontent.com/118209251/231465153-cf8e87e6-597f-4284-b907-8bc1754537f2.png" height="410" width="600" >
@@ -20,13 +20,13 @@
 
 
 <h2>How To Play</h2>
-You can control the game with mouse only.<br><br>
- * eat - press on the refrigerator and select food from the menu<br>
- * sleep - press on the bed<br>
- * bath - press on the bath<br>
- * pet - press as long as you want on the pet<br>
- * play - press on the toybox and select a game<br>
- * speak - press on the speech button above the screen and select a button word so the pet will learn/say it<br><br>
+The game can only be played with a mouse<br><br>
+ * eat - click the refrigerator and choose a dish from the menu<br>
+ * sleep - click the bed<br>
+ * bath - click the bath<br>
+ * pet - click the pet for as long as you'd like<br>
+ * play - click the toybox to choose a game<br>
+ * speak - click the speaking icon above the screen and choose a button word for the pet to learn or say.<br><br>
 
 
 
@@ -38,16 +38,16 @@ https://github.com/Inbar767/MyNooniGame/assets/118209251/e4e2966c-ab2b-4c62-9d94
 
 
 
-There is an exit button on every screen so you can go back/exit the game by pressing it.<br>
-There is an audio button on every screen so you can turn on/off music by pressing it.<br>
-There is a pause button on each level, speak state and yard state so you can pause the game whenever you need.<br>
-Getting mouse off the screen also causing the pause mood. Pressing play button resumes the game.
+Every screen has an escape button that may be used to return to a previous screen or end the game.<br>
+Every screen has an audio button that can be used to play or pause music.<br>
+You can pause the game at any time using the pause buttons on each level, speech state, and yard state.<br>
+The pause mood can also be induced by removing the mouse from the screen. The game is continued by pressing the play button.<br><br>
 
 
 <h2>Requirements</h2>
-In order to download the game and play with it you need to have SFML library.<br>
+In order to download the game and play with it, you need to have the SFML library.<br>
 You can download it from here: <a href="https://github.com/SFML/SFML">SFML Download</a>
 
 <h2>Notes</h2>
-The game was developed only by me using the C++ language and SFML library.<br>
-Graphics where made especially for this game by artis
+I worked alone to create the game using the C++ programming language and the SFML library. <br>
+This game's graphics were created just for it.
